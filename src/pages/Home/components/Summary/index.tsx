@@ -13,13 +13,13 @@ export function Summary() {
     "bio": string,
     "login": string,
     "company": string,
-    "followers": 2
+    "followers": number
   }
   
   // "https://api.github.com/users", "/lucaspedronet"
   // "https://api.github.com/search"
   // "https://api.github.com/repos/lucaspedronet/TudoLista/issues"
-  const [user, setUser] = useState<GitUser | null>();
+  const [user, setUser] = useState<GitUser | null>(null);
   useEffect(()=>{
     axios({
       method: "get",
@@ -27,7 +27,7 @@ export function Summary() {
       }).then((response) =>{
       setUser(response.data);
     });
-  });
+  },[]);
 
   return (
     <SummaryContainer>
