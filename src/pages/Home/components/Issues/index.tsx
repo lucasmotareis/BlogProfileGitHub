@@ -1,15 +1,23 @@
-// import { dateFormatter } from "../../../../utils/formatter";
+import { dateFormatter } from "../../../../utils/formatter";
 import { IssuesContainer, StyledNavLink } from "./styles";
+import { InterfaceIssues } from "../../index.tsx";
 
-export function Issues() {
+
+
+
+export function Issues({title,created_at,body,id,number} : InterfaceIssues) {
+
   return (
     <IssuesContainer>
-      <StyledNavLink to="/issue">
+      <StyledNavLink to={`/post/${id}`}>
         <div>
-          <h2>Exemplo de issue</h2>
-          <span>20/03/2025</span>
+          <h2> {title}</h2>
+          <span> {number}</span>
         </div>
-        <p>body</p>
+       
+       <span>{dateFormatter.format(new Date(created_at))}</span>
+       <p>{body?.length > 200 ? `${body?.slice(0, 200)}...` : body}</p>
+
       </StyledNavLink>
     </IssuesContainer>
   );
